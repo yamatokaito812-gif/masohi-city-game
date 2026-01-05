@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masohi City Simulator</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#8ecae6;
+  text-align:center;
+}
+header{
+  background:#023047;
+  color:white;
+  padding:15px;
+  font-size:20px;
+}
+#game{
+  padding:20px;
+}
+#character{
+  font-size:80px;
+  margin:20px;
+}
+.stats{
+  background:white;
+  padding:15px;
+  border-radius:10px;
+  margin:10px;
+}
+button{
+  padding:12px 18px;
+  margin:8px;
+  font-size:16px;
+  border:none;
+  border-radius:8px;
+  background:#219ebc;
+  color:white;
+}
+button:active{
+  background:#126782;
+}
+.shop{
+  margin-top:20px;
+  background:#ffb703;
+  padding:15px;
+  border-radius:10px;
+}
+.footer{
+  margin-top:30px;
+  font-size:12px;
+  color:#333;
+}
+</style>
+</head>
+
+<body>
+
+<header>🏙️ Masohi City Simulator</header>
+
+<div id="game">
+
+  <div id="character">🧍</div>
+
+  <div class="stats">
+    💰 Uang: <b>Rp <span id="uang">50000</span></b><br>
+    👔 Pekerjaan: <span id="job">Pengangguran</span>
+  </div>
+
+  <button onclick="kerja()">Kerja</button>
+  <button onclick="gantiJob()">Ganti Pekerjaan</button>
+
+  <div class="shop">
+    <h3>Toko Upgrade</h3>
+    <button onclick="upgrade()">Upgrade Skill (Rp 50.000)</button>
+  </div>
+
+</div>
+
+<div class="footer">
+  Game offline sederhana • Versi 1.0
+</div>
+
+<script>
+let uang = 50000;
+let job = "Pengangguran";
+let gaji = 20000;
+
+function updateUI(){
+  document.getElementById("uang").innerText = uang.toLocaleString("id-ID");
+  document.getElementById("job").innerText = job;
+}
+
+function kerja(){
+  uang += gaji;
+  updateUI();
+}
+
+function gantiJob(){
+  if(job === "Pengangguran"){
+    job = "Ojek";
+    gaji = 20000;
+    alert("Sekarang bekerja sebagai Ojek");
+  }else if(job === "Ojek"){
+    job = "Pedagang";
+    gaji = 30000;
+    alert("Sekarang bekerja sebagai Pedagang");
+  }else{
+    job = "Pengangguran";
+    gaji = 10000;
+    alert("Keluar dari pekerjaan");
+  }
+  updateUI();
+}
+
+function upgrade(){
+  if(uang >= 50000){
+    uang -= 50000;
+    gaji += 10000;
+    alert("Upgrade berhasil! Gaji bertambah");
+  }else{
+    alert("Uang tidak cukup");
+  }
+}
+
+// pertama kali
+updateUI();
+</script>
+
+</body>
+</html>
